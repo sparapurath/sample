@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="a0e87087-5e1f-4b85-b7f8-a618bf95fa11" >
+		<http:listener-connection host="0.0.0.0" port="${port}" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="f32b79e4-bdba-481b-be2d-7df230ac5a91" file="dev.properties" />
+	<flow name="hello-world-munitFlow" doc:id="3433a878-b5e7-4245-a039-909737142e4a" >
+		<http:listener doc:name="Listener" doc:id="423863d8-7d34-4489-b20f-0b387e5e8f23" config-ref="HTTP_Listener_config" path="${path}"/>
+		<logger level="INFO" doc:name="Logger" doc:id="d9f11950-cb3d-41ce-8b26-a4261c7bd05d" message="#[payload]"/>
+		<set-payload value='"Hello world munit"' doc:name="Set Payload" doc:id="0a04c682-7f23-47ee-8677-5efa1e46643b" />
+	</flow>
+</mule>
